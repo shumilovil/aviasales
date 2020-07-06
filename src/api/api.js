@@ -8,7 +8,7 @@ export const getTickets = () => {
     return axios.get('https://front-test.beta.aviasales.ru/search')
         .then(response => {
             axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=' + response.data.searchId)
-                .then(response => { console.log(response.data);
+                .then(response => { console.log(response.data)
                  })
         })
 }
