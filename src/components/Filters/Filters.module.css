@@ -1,0 +1,51 @@
+.filters {
+  width: 232px;
+  height: 252px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.filters h1 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #4A4A4A;
+  width: 192px;
+  height: 12px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.filters .connections {
+  width: 232px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.filters .connections span {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+  color: #4A4A4A;
+}
+
+.filters .checkbox {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.filters .connections:hover {
+  background-color: #F1FCFF;
+  cursor: pointer;
+}
