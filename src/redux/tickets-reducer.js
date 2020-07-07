@@ -29,6 +29,7 @@ const ticketsReducer = (state = initialState, action) => {
                 }
             }
 
+
             if (!state.filters[action.filter]) {
                 const copyOtherFilters = { ...state.filters };
                 delete copyOtherFilters[action.filter] // deletes current filter from copy
@@ -42,6 +43,7 @@ const ticketsReducer = (state = initialState, action) => {
                     filterAll: areAllOtherFiltersChecked ? true : false
                 }
             }
+            break;
 
         case TOGGLE_FILTER_ALL:
             if (state.filterAll) {
@@ -71,12 +73,14 @@ const ticketsReducer = (state = initialState, action) => {
                     }
                 }
             }
+            break;
 
         case SET_TICKETS:
             return {
                 ...state,
                 tickets: [...action.tickets.slice(0, 10)]
             }
+            
 
         default:
             return state;
