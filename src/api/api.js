@@ -4,12 +4,11 @@ import axiosRetry from 'axios-retry';
 
 axiosRetry(axios, { retries: 3 });
 
-export const getTickets = () => {
-    return axios.get('https://front-test.beta.aviasales.ru/search')
-        .then(response => {
-            axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=' + response.data.searchId)
-                .then(response => { console.log(response.data)
-                 })
-        })
+export const getTickets = async () => {
+    const searchId = await axios.get('https://front-test.beta.aviasales.ru/search');   
+    const response = await axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=' + searchId.data.searchId);     
+
+    return response.data.tickets;   
+        
 }
 

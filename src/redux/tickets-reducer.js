@@ -1,8 +1,9 @@
 const TOGGLE_FILTER = 'TOGGLE_FILTER';
-const TOGGLE_FILTER_ALL = 'TOGGLE_FILTER_ALL'
+const TOGGLE_FILTER_ALL = 'TOGGLE_FILTER_ALL';
+const SET_TICKETS = 'SET_TICKETS';
 
 const initialState = {
-    ticketsItems: [],
+    tickets: [],
     filters: {
         zeroConnections: true,
         oneConnection: true,
@@ -17,9 +18,7 @@ const ticketsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case TOGGLE_FILTER:
-
             if (state.filters[action.filter]) {
-
                 return {
                     ...state,
                     filters: {
@@ -31,11 +30,9 @@ const ticketsReducer = (state = initialState, action) => {
             }
 
             if (!state.filters[action.filter]) {
-
                 const copyOtherFilters = { ...state.filters };
                 delete copyOtherFilters[action.filter] // deletes current filter from copy
                 const areAllOtherFiltersChecked = Object.values(copyOtherFilters).every(filter => filter === true)
-
                 return {
                     ...state,
                     filters: {
@@ -47,7 +44,6 @@ const ticketsReducer = (state = initialState, action) => {
             }
 
         case TOGGLE_FILTER_ALL:
-
             if (state.filterAll) {
                 const copyFiltersAndReset = { ...state.filters }
                 for (let key in copyFiltersAndReset) {
@@ -76,6 +72,12 @@ const ticketsReducer = (state = initialState, action) => {
                 }
             }
 
+        case SET_TICKETS:
+            return {
+                ...state,
+                tickets: [...action.tickets.slice(0, 10)]
+            }
+
         default:
             return state;
     };
@@ -84,6 +86,7 @@ const ticketsReducer = (state = initialState, action) => {
 
 
 export const toggleFilter = (filter) => ({ type: TOGGLE_FILTER, filter });
-export const toggleFilterAll = (filter) => ({ type: TOGGLE_FILTER_ALL, filter })
+export const toggleFilterAll = (filter) => ({ type: TOGGLE_FILTER_ALL, filter });
+export const setTickets = (tickets) => ({ type: SET_TICKETS, tickets });
 
 export default ticketsReducer;

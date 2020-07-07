@@ -53,6 +53,7 @@
 
 .sortChoice .chosen {
   background: #2196F3;
+  cursor: default;
 }
 
 .sortChoice .chosen span {
@@ -63,7 +64,7 @@
 
 .ticketsItem {
   width: 502px;
-  height: 184px;
+  height: 238px;
   background: #FFFFFF;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -97,7 +98,7 @@
 
 .ticketsItem .route {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .ticketsItem .route .routePiece {

@@ -1,141 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Tickets.module.css'
+import { Ticket } from './Ticket';
 
-export const Tickets = (props) => {
+export const Tickets = (props) => {  
+
+  const [sort, setSort] = useState({ fastest: true, cheapest: false });
+
+  const handleSortCheapest = () => {
+    setSort({ fastest: false, cheapest: true })
+  }
+
+  const handleSortFastest = () => {
+    setSort({ fastest: true, cheapest: false })
+  }
+
+  const copyTickets = [...props.tickets]
+
   return (
     <div className={style.tickets}>
       <div className={style.sortChoice}>
-        <div className={style.sortParam + ' ' + style.cheapest}>
+
+        <div className={sort.cheapest
+          ? style.chosen + ' ' + style.sortParam + ' ' + style.cheapest
+          : style.sortParam + ' ' + style.cheapest}
+          onClick={handleSortCheapest}>
           <span>Самый дешевый</span>
         </div>
-        <div className={style.sortParam + ' ' + style.fastest + ' ' + style.chosen}>
+
+        <div className={sort.fastest
+          ? style.chosen + ' ' + style.sortParam + ' ' + style.fastest
+          : style.sortParam + ' ' + style.fastest}
+          onClick={handleSortFastest}>
           <span>Самый быстрый</span>
         </div>
       </div>
-      <div className={style.ticketsItem}>
-        <div className={style.priceAndAirlineLogo}>
-          <div className={style.price}>
-            <span>13 400 Р</span>
-          </div>
-          <div className={style.airlineLogo}>
-            <img src="https://pics.avs.io/99/36/S7.png" alt="" />
-          </div>
-        </div>
-        <div className={style.route}>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-        </div>
-        <div className={style.route}>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={style.ticketsItem}>
-        <div className={style.priceAndAirlineLogo}>
-          <div className={style.price}>
-            <span>13 400 Р</span>
-          </div>
-          <div className={style.airlineLogo}>
-            <img src="https://pics.avs.io/99/36/S7.png" alt="" />
-          </div>
-        </div>
-        <div className={style.route}>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-        </div>
-        <div className={style.route}>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-          <div className={style.routePiece}>
-            <div className={style.firstLine}>
-              <span>Mow-Hkt</span>
-            </div>
-            <div className={style.secondLine}>
-              <span>10:45 - 08:00</span>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      {sort.fastest
+        && copyTickets
+          .sort((a, b) => { return a.segments[0].duration - b.segments[0].duration })
+          .map((t, index) => {
+            return (
+              <Ticket tickets={copyTickets[index]} key={index} />
+            )
+          })}
+
+      {sort.cheapest
+        && copyTickets
+          .sort((a, b) => { return a.price - b.price })
+          .map((t, index) => {
+            return (
+              <Ticket tickets={copyTickets[index]} key={index} />
+            )
+          })
+      }
+
     </div>
   )
 }
