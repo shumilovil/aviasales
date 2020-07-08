@@ -1,17 +1,14 @@
 import React from 'react';
 import { Tickets } from './Tickets';
-import { getTickets } from '../../api/api';
 import { connect } from 'react-redux';
-import { setTickets } from '../../redux/tickets-reducer';
+import { getTickets } from '../../redux/tickets-reducer';
 import { getProcessedTickets } from '../../redux/tickets-selectors';
 
 
 class TicketsContainer extends React.Component {
 
     componentDidMount() {
-        getTickets().then(response => {            
-            this.props.setTickets(response)      
-        })
+        this.props.getTickets()
     }
 
     render() {
@@ -27,4 +24,5 @@ const marStateToProps = (state) => {
     }
 }
 
-export default connect(marStateToProps, { setTickets })(TicketsContainer)
+export default connect(marStateToProps, { getTickets })(TicketsContainer);
+

@@ -4,13 +4,17 @@ const getTicketsFromStore = (state) => {
     return state.ticketsArea.tickets;
 }
 
-const getFiltersParams = (state) => {
+const getConnectionsThere = (state) => {
     return state.filtersArea.there.connections;
 }
 
-const getFilteredTickets = createSelector([getFiltersParams, getTicketsFromStore],
+const getDurationThere = (state) => {
+    return state.filtersArea.there.durationRange;
+}
 
-    (filters, tickets) => {
+const getFilteredTickets = createSelector([getConnectionsThere, getDurationThere, getTicketsFromStore],
+
+    (filters, duration, tickets) => {
         
         const filteredTickets = [];
 
@@ -42,7 +46,11 @@ const getFilteredTickets = createSelector([getFiltersParams, getTicketsFromStore
             filteredTickets.push(...filtered);
         }
 
-        return filteredTickets;
+        const filteredAndDurationTickets = filteredTickets.filter(ticket => {
+            return (ticket.segments[0].duration >= duration.min && ticket.segments[0].duration <= duration.max) 
+        })        
+
+        return filteredAndDurationTickets;
     }
 );
 

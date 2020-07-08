@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './Tickets.module.css'
 import { Ticket } from './Ticket';
 
-export const Tickets = (props) => {  
+export const Tickets = (props) => {
+  
+  const initialAmountOnPage = 20;
 
   const [sort, setSort] = useState({ fastest: true, cheapest: false });
+  const [amountOnPage, setAmount] = useState(initialAmountOnPage);
 
   const handleSortCheapest = () => {
     setSort({ fastest: false, cheapest: true })
@@ -14,7 +17,14 @@ export const Tickets = (props) => {
     setSort({ fastest: true, cheapest: false })
   }
 
-  const copyTickets = [...props.tickets]
+  const handleOnPageAmount = () => {
+    console.log('SetAmount');
+    setAmount(amountOnPage + initialAmountOnPage);
+  }
+
+  useEffect(() => {
+    setAmount(initialAmountOnPage);
+  }, [props.tickets])
 
   return (
     <div className={style.tickets}>
@@ -31,28 +41,43 @@ export const Tickets = (props) => {
           ? style.chosen + ' ' + style.sortParam + ' ' + style.fastest
           : style.sortParam + ' ' + style.fastest}
           onClick={handleSortFastest}>
-          <span>Самый быстрый</span>
+          <span>Самый быстрый (туда)</span>
         </div>
       </div>
 
+      <div className={style.ticketsAmount}>
+        <span>Билетов найдено: {props.tickets.length}</span>
+      </div>
+
       {sort.fastest
-        && copyTickets
+        && [...props.tickets]
           .sort((a, b) => { return a.segments[0].duration - b.segments[0].duration })
+          .slice(0, amountOnPage)
           .map((t, index) => {
             return (
-              <Ticket ticket={copyTickets[index]} key={index} />
+              <Ticket ticket={t} key={index} />
             )
           })}
 
       {sort.cheapest
-        && copyTickets
+        && [...props.tickets]
           .sort((a, b) => { return a.price - b.price })
+          .slice(0, amountOnPage)
           .map((t, index) => {
             return (
-              <Ticket ticket={copyTickets[index]} key={index} />
+              <Ticket ticket={t} key={index} />
             )
           })
       }
+
+      {
+        amountOnPage < props.tickets.length &&
+        <div className={style.amountOnPage} onClick={handleOnPageAmount}>
+          <span>Показать еще: {(props.tickets.length - amountOnPage) < initialAmountOnPage ? props.tickets.length - amountOnPage : initialAmountOnPage}</span>
+        </div>
+      }
+
+
 
     </div>
   )

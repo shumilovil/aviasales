@@ -5,11 +5,9 @@ import style from './RangeSlider.module.css'
 
 const useStyles = makeStyles({
   root: {
-    width: 190,
-  },
+    width: 190
+  }
 });
-
-
 
 function valuetext(value) {
   return `${value}`;
@@ -17,12 +15,17 @@ function valuetext(value) {
 
 export default function RangeSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState([0, 300]);
+  const [value, setValue] = React.useState([0, 50]);
 
   useEffect(() => {
     console.log('Useeffect');
-    props.chooseDuration({ min: value[0], max: value[1] })
+    props.chooseDuration({ min: value[0] * 60, max: value[1] * 60 })
   }, [value])
+
+  useEffect(() => {
+    console.log('Useeffect22');
+    setValue([props.minMaxDurationThere.min, props.minMaxDurationThere.max])
+  }, [props.minMaxDurationThere])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,14 +34,15 @@ export default function RangeSlider(props) {
   return (
     <div className={style.rangeSlider}>
       <div className={classes.root}>
-  <div className={style.duration}>Общее время, ч: от {value[0]} до {value[1]}</div>
+        <div className={style.duration}>Время туда, ч: от {value[0]} до {value[1]}</div>
         <Slider
           value={value}
           onChange={handleChange}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
-          getAriaValueText={valuetext}
-          max='300'
+          getAriaValueText={valuetext}          
+          min={props.minMaxDurationThere.min}
+          max={props.minMaxDurationThere.max}
         />
       </div>
     </div>

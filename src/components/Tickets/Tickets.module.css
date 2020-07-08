@@ -21,7 +21,7 @@
 }
 
 .sortChoice .sortParam span {
-  width: 138px;
+  width: 180px;
   height: 20px;
   font-style: normal;
   font-weight: 600;
@@ -59,6 +59,57 @@
 .sortChoice .chosen span {
   color: #FFFFFF;
 }
+
+/* Tickets amount */
+
+.ticketsAmount {
+  border: 1px solid #DFE5EC;
+  height: 50px;
+  display: flex;
+  margin-bottom: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticketsAmount span {  
+  height: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #4A4A4A;
+}
+
+.amountOnPage {
+  border: 1px solid #DFE5EC;
+  height: 50px;
+  display: flex;
+  margin-bottom: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.amountOnPage span {  
+  height: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #4A4A4A;
+}
+
+
 
 /* Tickets Items */
 

@@ -1,3 +1,5 @@
+import { getSearchId, getTicketsPack } from "../api/api";
+
 const SET_TICKETS = 'SET_TICKETS';
 
 const initialState = {
@@ -11,7 +13,7 @@ const ticketsReducer = (state = initialState, action) => {
         case SET_TICKETS:
             return {
                 ...state,
-                tickets: [...action.tickets.slice(0, 10)]
+                tickets: [...state.tickets, ...action.tickets]
             }
 
         default:
@@ -21,6 +23,19 @@ const ticketsReducer = (state = initialState, action) => {
 };
 
 
-export const setTickets = (tickets) => ({ type: SET_TICKETS, tickets });
+const setTickets = (tickets) => ({ type: SET_TICKETS, tickets });
+
+export const getTickets = () => {    
+    return async (dispatch) => { 
+                
+        const searchId = await getSearchId();
+        let isStop = false;
+        while (isStop === false) {
+            const response = await getTicketsPack(searchId.data.searchId);
+            dispatch(setTickets(response.data.tickets));
+            isStop = response.data.stop;            
+        }         
+    }
+}
 
 export default ticketsReducer;

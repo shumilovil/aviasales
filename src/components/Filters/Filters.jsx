@@ -48,10 +48,11 @@ export const Filters = (props) => {
                     onFilterChange={onFilterChange}
                     filter={props.filtersThere.connections.threeConnections}
                     filterName={'threeConnections'}
-                />                
+                />
 
                 <ThemeProvider theme={theme}>
-                    <RangeSlider chooseDuration={props.chooseDuration}/>
+                    <RangeSlider chooseDuration={props.chooseDuration}
+                        minMaxDurationThere={props.minMaxDurationThere} />
                 </ThemeProvider>
 
             </div>
