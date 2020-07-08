@@ -1,15 +1,16 @@
 import { Filters } from './Filters';
 import { connect } from 'react-redux';
-import { toggleFilter, toggleFilterAll } from '../../redux/tickets-reducer';
+import { toggleFilter, toggleallConnections, chooseDuration } from '../../redux/filters-reducer';
 
 const mapStateToProps = (state) => {
 
     return {
-        filters: state.ticketsPage.filters,
-        filterAll: state.ticketsPage.filterAll
+        filtersThere: state.filtersArea.there
     }
 }
 
-export const FiltersContainer = connect(mapStateToProps, {toggleFilter, toggleFilterAll})(Filters);
+export const FiltersContainer = connect(mapStateToProps, {toggleFilter, toggleallConnections, chooseDuration})(Filters);
+
+
 
 

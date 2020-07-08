@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Tickets.module.css';
 
 export const Ticket = (props) => {
-    const { carrier, priceConverted, segments } = props.tickets;
+    const { carrier, priceConverted, segments } = props.ticket;
 
     
 

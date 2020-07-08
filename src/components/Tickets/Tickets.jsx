@@ -40,7 +40,7 @@ export const Tickets = (props) => {
           .sort((a, b) => { return a.segments[0].duration - b.segments[0].duration })
           .map((t, index) => {
             return (
-              <Ticket tickets={copyTickets[index]} key={index} />
+              <Ticket ticket={copyTickets[index]} key={index} />
             )
           })}
 
@@ -49,7 +49,7 @@ export const Tickets = (props) => {
           .sort((a, b) => { return a.price - b.price })
           .map((t, index) => {
             return (
-              <Ticket tickets={copyTickets[index]} key={index} />
+              <Ticket ticket={copyTickets[index]} key={index} />
             )
           })
       }

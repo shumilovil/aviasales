@@ -1,11 +1,11 @@
 import { createSelector } from "reselect";
 
 const getTicketsFromStore = (state) => {
-    return state.ticketsPage.tickets;
+    return state.ticketsArea.tickets;
 }
 
 const getFiltersParams = (state) => {
-    return state.ticketsPage.filters;
+    return state.filtersArea.there.connections;
 }
 
 const getFilteredTickets = createSelector([getFiltersParams, getTicketsFromStore],

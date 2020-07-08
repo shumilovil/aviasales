@@ -1,6 +1,9 @@
 import React from 'react';
 import style from './Filters.module.css'
 import { Filter } from './Filter';
+import RangeSlider from './RangeSlider/RangeSlider';
+import { ThemeProvider } from '@material-ui/core';
+import theme from './RangeSlider/theme';
 
 export const Filters = (props) => {
 
@@ -8,44 +11,50 @@ export const Filters = (props) => {
         props.toggleFilter(filterName);
     }
 
-    const onFilterAllChange = (filterName) => {
-        props.toggleFilterAll(filterName);
+    const onallConnectionsChange = (filterName) => {
+        props.toggleallConnections(filterName);
     }
 
     return (
-        <div className={style.filters}>
-            <h1>Количество пересадок</h1>
+        <div>
+            <div className={style.filters}>
+                <h1>Туда</h1>
 
-            <Filter filterLabel={'Все'}
-                onFilterChange={onFilterAllChange}
-                filter={props.filterAll}
-                filterName={'all'}
-            />
+                <Filter filterLabel={'Все пересадки'}
+                    onFilterChange={onallConnectionsChange}
+                    filter={props.filtersThere.allConnections}
+                    filterName={'all'}
+                />
 
-            <Filter filterLabel={'Без пересадок'}
-                onFilterChange={onFilterChange}
-                filter={props.filters.zeroConnections}
-                filterName={'zeroConnections'}
-            />
+                <Filter filterLabel={'Без пересадок'}
+                    onFilterChange={onFilterChange}
+                    filter={props.filtersThere.connections.zeroConnections}
+                    filterName={'zeroConnections'}
+                />
 
-            <Filter filterLabel={'1 пересадка'}
-                onFilterChange={onFilterChange}
-                filter={props.filters.oneConnection}
-                filterName={'oneConnection'}
-            />
+                <Filter filterLabel={'1 пересадка'}
+                    onFilterChange={onFilterChange}
+                    filter={props.filtersThere.connections.oneConnection}
+                    filterName={'oneConnection'}
+                />
 
-            <Filter filterLabel={'2 пересадки'}
-                onFilterChange={onFilterChange}
-                filter={props.filters.twoConnections}
-                filterName={'twoConnections'}
-            />
+                <Filter filterLabel={'2 пересадки'}
+                    onFilterChange={onFilterChange}
+                    filter={props.filtersThere.connections.twoConnections}
+                    filterName={'twoConnections'}
+                />
 
-            <Filter filterLabel={'3 пересадки'}
-                onFilterChange={onFilterChange}
-                filter={props.filters.threeConnections}
-                filterName={'threeConnections'}
-            />
+                <Filter filterLabel={'3 пересадки'}
+                    onFilterChange={onFilterChange}
+                    filter={props.filtersThere.connections.threeConnections}
+                    filterName={'threeConnections'}
+                />                
 
+                <ThemeProvider theme={theme}>
+                    <RangeSlider chooseDuration={props.chooseDuration}/>
+                </ThemeProvider>
+
+            </div>
         </div>
     )
 }
