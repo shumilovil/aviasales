@@ -1,9 +1,28 @@
-const TOGGLE_FILTER = 'TOGGLE_FILTER';
-const TOGGLE_FILTER_ALL = 'TOGGLE_FILTER_ALL';
-const CHOOSE_DURATION = 'CHOOSE_DURATION';
+import { toogleSingleConnectionFilter, toogleAllConnectionFilter, changeDuration } from "./helpers/filters-reducer-helper";
+
+const TOGGLE_FILTER_THERE = 'TOGGLE_FILTER_THERE';
+const TOGGLE_FILTER_THERE_ALL_THERE = 'TOGGLE_FILTER_THERE_ALL_THERE';
+const CHOOSE_DURATION_THERE = 'CHOOSE_DURATION_THERE';
+
+const TOGGLE_FILTER_FROM = 'TOGGLE_FILTER_FROM';
+const TOGGLE_FILTER_THERE_ALL_FROM = 'TOGGLE_FILTER_THERE_ALL_FROM';
+const CHOOSE_DURATION_FROM = 'CHOOSE_DURATION_FROM';
 
 const initialState = {
     there: {
+        connections: {
+            zeroConnections: true,
+            oneConnection: true,
+            twoConnections: true,
+            threeConnections: true
+        },
+        allConnections: true,
+        durationRange: {
+            min: 0,
+            max: 0
+        }
+    },
+    from: {
         connections: {
             zeroConnections: true,
             oneConnection: true,
@@ -19,91 +38,28 @@ const initialState = {
 
 }
 
+
 const filtersReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case TOGGLE_FILTER:
-            if (state.there.connections[action.filter]) {
-                return {
-                    ...state,
-                    there: {
-                        ...state.there,
-                        connections: {
-                            ...state.there.connections,
-                            [action.filter]: !state.there.connections[action.filter]
-                        },
-                        allConnections: false
-                    }
-                }
-            }
+        case TOGGLE_FILTER_THERE:
+            return toogleSingleConnectionFilter(state, action, 'there');            
 
-            if (!state.there.connections[action.filter]) {
-                const copyOtherFilters = { ...state.there.connections };
-                delete copyOtherFilters[action.filter] // deletes current filter from copy
-                const areAllOtherFiltersChecked = Object.values(copyOtherFilters).every(filter => filter === true)
-                return {
-                    ...state,
-                    there: {
-                        ...state.there,
-                        connections: {
-                            ...state.there.connections,
-                            [action.filter]: !state.there.connections[action.filter]
-                        },
-                        allConnections: areAllOtherFiltersChecked ? true : false
-                    }
-                }
-            }
-            break;
+        case TOGGLE_FILTER_THERE_ALL_THERE:
+            return toogleAllConnectionFilter(state, 'there');
 
-        case TOGGLE_FILTER_ALL:
-            if (state.there.allConnections) {
-                const copyFiltersAndReset = { ...state.there.connections }
-                for (let key in copyFiltersAndReset) {
-                    copyFiltersAndReset[key] = false;
-                }
-                return {
-                    ...state,
-                    there: {
-                        ...state.there,
-                        connections: {
-                            ...copyFiltersAndReset
-                        },
-                        allConnections: !state.there.allConnections
-                    }
-                }
-            }
+        case CHOOSE_DURATION_THERE:
+            return changeDuration(state, action, 'there');
 
-            if (!state.there.allConnections) {
-                const copyFiltersAndReset = { ...state.there.connections }
-                for (let key in copyFiltersAndReset) {
-                    copyFiltersAndReset[key] = true;
-                }
-                return {
-                    ...state,
-                    there: {
-                        ...state.there,
-                        connections: {
-                            ...copyFiltersAndReset
-                        },
-                        allConnections: !state.there.allConnections
-                    }
-                }
-            }
-            break;
+            case TOGGLE_FILTER_FROM:
+            return toogleSingleConnectionFilter(state, action, 'from');            
 
-        case CHOOSE_DURATION:
-            return {
-                ...state,
-                there: {
-                    ...state.there,
-                    durationRange: {
-                        min: action.duration.min,
-                        max: action.duration.max
+        case TOGGLE_FILTER_THERE_ALL_FROM:
+            return toogleAllConnectionFilter(state, 'from');
 
-                    }
-                }
-            }
+        case CHOOSE_DURATION_FROM:
+            return changeDuration(state, action, 'from');
 
 
         default:
@@ -113,8 +69,12 @@ const filtersReducer = (state = initialState, action) => {
 };
 
 
-export const toggleFilter = (filter) => ({ type: TOGGLE_FILTER, filter });
-export const toggleallConnections = (filter) => ({ type: TOGGLE_FILTER_ALL, filter });
-export const chooseDuration = (duration) => ({ type: CHOOSE_DURATION, duration });
+export const toggleFilterThere = (filter) => ({ type: TOGGLE_FILTER_THERE, filter });
+export const toggleallConnectionsThere = (filter) => ({ type: TOGGLE_FILTER_THERE_ALL_THERE, filter });
+export const chooseDurationThere = (duration) => ({ type: CHOOSE_DURATION_THERE, duration });
+
+export const toggleFilterFrom = (filter) => ({ type: TOGGLE_FILTER_FROM, filter });
+export const toggleallConnectionsFrom = (filter) => ({ type: TOGGLE_FILTER_THERE_ALL_FROM, filter });
+export const chooseDurationFrom = (duration) => ({ type: CHOOSE_DURATION_FROM, duration });
 
 export default filtersReducer;

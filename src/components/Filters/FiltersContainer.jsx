@@ -1,17 +1,28 @@
 import { Filters } from './Filters';
 import { connect } from 'react-redux';
-import { toggleFilter, toggleallConnections, chooseDuration } from '../../redux/filters-reducer';
-import { getMinMaxDurationThere } from '../../redux/filters-selector';
+import { toggleFilterThere, toggleallConnectionsThere, chooseDurationThere, chooseDurationFrom, toggleFilterFrom, toggleallConnectionsFrom } from '../../redux/filters-reducer';
+import { getMinMaxDurationThere, getMinMaxDurationFrom } from '../../redux/filters-selector';
 
 const mapStateToProps = (state) => {
 
     return {
         filtersThere: state.filtersArea.there,
-        minMaxDurationThere: getMinMaxDurationThere(state)
+        filtersFrom: state.filtersArea.from,
+        minMaxDurationThere: getMinMaxDurationThere(state),
+        minMaxDurationFrom: getMinMaxDurationFrom(state)
     }
 }
 
-export const FiltersContainer = connect(mapStateToProps, { toggleFilter, toggleallConnections, chooseDuration })(Filters);
+export const FiltersContainer = connect(mapStateToProps, {
+    toggleFilterThere,
+    toggleallConnectionsThere,
+    chooseDurationThere,
+    toggleFilterFrom,
+    toggleallConnectionsFrom,
+    chooseDurationFrom
+})(Filters);
+
+
 
 
 

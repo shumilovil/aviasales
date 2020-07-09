@@ -52,7 +52,7 @@
 }
 
 .sortChoice .chosen {
-  background: #2196F3;
+  background-color: #2196F3;
   cursor: default;
 }
 
@@ -95,7 +95,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: #4A4A4A;
 }
+
 
 .amountOnPage span {
   height: 20px;
@@ -106,8 +108,14 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   text-align: center;
-  color: #4A4A4A;
+  
 }
+
+.amountOnPage:hover {
+  background-color: #2196F3;
+  color: #FFFFFF;
+}
+
 
 /* Tickets Items */
 

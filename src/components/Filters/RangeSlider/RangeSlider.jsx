@@ -19,8 +19,8 @@ export default function RangeSlider(props) {
 
   useEffect(() => {
     console.log('Useeffect22');
-    setValue([props.minMaxDurationThere.min, props.minMaxDurationThere.max])
-  }, [props.minMaxDurationThere])
+    setValue([props.minMaxDuration.min, props.minMaxDuration.max])
+  }, [props.minMaxDuration])
 
   useEffect(() => {    
     console.log('Useeffect');
@@ -34,15 +34,15 @@ export default function RangeSlider(props) {
   return (
     <div className={style.rangeSlider}>
       <div className={classes.root}>
-        <div className={style.duration}>Время туда, ч: от {value[0]} до {value[1]}</div>
+        <div className={style.duration}>Время в пути, ч: от {value[0]} до {value[1]}</div>
         <Slider
           value={value}
           onChange={handleChange}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
           getAriaValueText={valuetext}
-          min={props.minMaxDurationThere.min}
-          max={props.minMaxDurationThere.max}
+          min={props.minMaxDuration.min}
+          max={props.minMaxDuration.max}
         />
       </div>
     </div>

@@ -23,6 +23,8 @@
   margin-bottom: 10px;
 }
 
+
+
 .filters .connections {
   width: 232px;
   height: 40px;
@@ -49,4 +51,8 @@
 .filters .connections:hover {
   background-color: #F1FCFF;
   cursor: pointer;
+}
+
+.from {
+  margin-top: 20px;
 }

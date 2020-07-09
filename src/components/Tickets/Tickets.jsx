@@ -17,8 +17,7 @@ export const Tickets = (props) => {
     setSort({ fastest: true, cheapest: false })
   }
 
-  const handleOnPageAmount = () => {
-    console.log('SetAmount');
+  const handleOnPageAmount = () => {    
     setAmount(amountOnPage + initialAmountOnPage);
   }
 

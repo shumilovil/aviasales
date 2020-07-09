@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { filterTickets } from "./helpers/tickets-selectors-helper";
 
 const getTicketsFromStore = (state) => {
     return state.ticketsArea.tickets;
@@ -12,48 +13,31 @@ const getDurationThere = (state) => {
     return state.filtersArea.there.durationRange;
 }
 
-const getFilteredTickets = createSelector([getConnectionsThere, getDurationThere, getTicketsFromStore],
-    (filters, duration, tickets) => {
-        const filteredTickets = [];
+const getConnectionsFrom = (state) => {
+    return state.filtersArea.from.connections;
+}
 
-        if (filters.zeroConnections) {
-            const filtered = tickets.filter(ticket => {
-                return ticket.segments[0].stops.length === 0;
-            });
-            filteredTickets.push(...filtered);
-        }
+const getDurationFrom = (state) => {
+    return state.filtersArea.from.durationRange;
+}
 
-        if (filters.oneConnection) {
-            const filtered = tickets.filter(ticket => {
-                return ticket.segments[0].stops.length === 1;
-            });
-            filteredTickets.push(...filtered);
-        }
 
-        if (filters.twoConnections) {
-            const filtered = tickets.filter(ticket => {
-                return ticket.segments[0].stops.length === 2;
-            });
-            filteredTickets.push(...filtered);
-        }
 
-        if (filters.threeConnections) {
-            const filtered = tickets.filter(ticket => {
-                return ticket.segments[0].stops.length === 3;
-            });
-            filteredTickets.push(...filtered);
-        }
-
-        const filteredAndDurationTickets = filteredTickets.filter(ticket => {
-            return (ticket.segments[0].duration >= duration.min && ticket.segments[0].duration <= duration.max)
-        })
-
-        return filteredAndDurationTickets;
+const getFilteredTicketsThere = createSelector([getConnectionsThere, getDurationThere, getTicketsFromStore],
+    (filters, duration, tickets) => {        
+        return filterTickets(filters, duration, tickets, 0);      
     }
 );
 
-export const getProcessedTickets = createSelector([getFilteredTickets],
-    (tickets) => {
+const getFilteredTicketsFrom = createSelector([getConnectionsFrom, getDurationFrom, getFilteredTicketsThere],
+    (filters, duration, tickets) => {                 
+        return filterTickets(filters, duration, tickets, 1);      
+    }
+);
+
+
+export const getProcessedTickets = createSelector([getFilteredTicketsFrom],
+    (tickets) => {        
         const processedTickets = tickets.map(ticket => {
 
             return {
