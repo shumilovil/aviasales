@@ -1,7 +1,7 @@
 import { Filters } from './Filters';
 import { connect } from 'react-redux';
 import { toggleFilterThere, toggleallConnectionsThere, chooseDurationThere, chooseDurationFrom, toggleFilterFrom, toggleallConnectionsFrom } from '../../redux/filters-reducer';
-import { getMinMaxDurationThere, getMinMaxDurationFrom } from '../../redux/filters-selector';
+import { getMinMaxDurationThere, getMinMaxDurationFrom } from '../../redux/filters-selectors';
 
 const mapStateToProps = (state) => {
 
