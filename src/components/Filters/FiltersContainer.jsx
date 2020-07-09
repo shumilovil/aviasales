@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export const FiltersContainer = connect(mapStateToProps, {toggleFilter, toggleallConnections, chooseDuration})(Filters);
+export const FiltersContainer = connect(mapStateToProps, { toggleFilter, toggleallConnections, chooseDuration })(Filters);
 
 
 

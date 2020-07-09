@@ -3,7 +3,7 @@ import style from './Tickets.module.css'
 import { Ticket } from './Ticket';
 
 export const Tickets = (props) => {
-  
+
   const initialAmountOnPage = 20;
 
   const [sort, setSort] = useState({ fastest: true, cheapest: false });
@@ -73,11 +73,15 @@ export const Tickets = (props) => {
       {
         amountOnPage < props.tickets.length &&
         <div className={style.amountOnPage} onClick={handleOnPageAmount}>
-          <span>Показать еще: {(props.tickets.length - amountOnPage) < initialAmountOnPage ? props.tickets.length - amountOnPage : initialAmountOnPage}</span>
+          <span>
+            Показать еще: {
+              (props.tickets.length - amountOnPage) < initialAmountOnPage
+                ? props.tickets.length - amountOnPage
+                : initialAmountOnPage
+            }
+          </span>
         </div>
       }
-
-
 
     </div>
   )

@@ -4,7 +4,7 @@ import style from './Tickets.module.css';
 export const Ticket = (props) => {
     const { carrier, priceConverted, segments } = props.ticket;
 
-    
+
 
     return (
         <div className={style.ticketsItem}>

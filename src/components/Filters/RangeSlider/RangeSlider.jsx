@@ -15,17 +15,17 @@ function valuetext(value) {
 
 export default function RangeSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState([0, 50]);
-
-  useEffect(() => {
-    console.log('Useeffect');
-    props.chooseDuration({ min: value[0] * 60, max: value[1] * 60 })
-  }, [value])
+  const [value, setValue] = React.useState([0, 50]);  
 
   useEffect(() => {
     console.log('Useeffect22');
     setValue([props.minMaxDurationThere.min, props.minMaxDurationThere.max])
   }, [props.minMaxDurationThere])
+
+  useEffect(() => {    
+    console.log('Useeffect');
+    props.chooseDuration({ min: value[0] * 60, max: value[1] * 60 })
+  }, [value])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -40,7 +40,7 @@ export default function RangeSlider(props) {
           onChange={handleChange}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
-          getAriaValueText={valuetext}          
+          getAriaValueText={valuetext}
           min={props.minMaxDurationThere.min}
           max={props.minMaxDurationThere.max}
         />

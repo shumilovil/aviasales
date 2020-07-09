@@ -13,9 +13,7 @@ const getDurationThere = (state) => {
 }
 
 const getFilteredTickets = createSelector([getConnectionsThere, getDurationThere, getTicketsFromStore],
-
     (filters, duration, tickets) => {
-        
         const filteredTickets = [];
 
         if (filters.zeroConnections) {
@@ -47,23 +45,21 @@ const getFilteredTickets = createSelector([getConnectionsThere, getDurationThere
         }
 
         const filteredAndDurationTickets = filteredTickets.filter(ticket => {
-            return (ticket.segments[0].duration >= duration.min && ticket.segments[0].duration <= duration.max) 
-        })        
+            return (ticket.segments[0].duration >= duration.min && ticket.segments[0].duration <= duration.max)
+        })
 
         return filteredAndDurationTickets;
     }
 );
 
 export const getProcessedTickets = createSelector([getFilteredTickets],
-
     (tickets) => {
-
         const processedTickets = tickets.map(ticket => {
 
             return {
                 ...ticket,
                 priceConverted: ticket.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), //Converts price
-                
+
                 segments: ticket.segments.map(segment => {
                     //Converts date
                     const date = new Date(segment.date)
@@ -77,8 +73,8 @@ export const getProcessedTickets = createSelector([getFilteredTickets],
                     const timeConverted = `${hour}:${minute}`;
 
                     //Converts duration
-                    const durationHours = Math.trunc(segment.duration / 60);                
-                    const durationMinutes = segment.duration % 60;
+                    const durationHours = Math.trunc(segment.duration / 60);
+                    const durationMinutes = segment.duration % 60;
                     const durationConverted = `${durationHours}ч ${durationMinutes}м`;
 
                     return {

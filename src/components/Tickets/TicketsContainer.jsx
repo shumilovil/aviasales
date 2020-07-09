@@ -13,7 +13,7 @@ class TicketsContainer extends React.Component {
 
     render() {
         return (
-            <Tickets tickets={this.props.tickets}/>
+            <Tickets tickets={this.props.tickets} />
         )
     }
 }

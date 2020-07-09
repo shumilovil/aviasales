@@ -100,11 +100,11 @@ const filtersReducer = (state = initialState, action) => {
                     durationRange: {
                         min: action.duration.min,
                         max: action.duration.max
-                        
+
                     }
                 }
             }
-            
+
 
         default:
             return state;

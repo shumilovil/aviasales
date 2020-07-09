@@ -73,7 +73,7 @@
   justify-content: center;
 }
 
-.ticketsAmount span {  
+.ticketsAmount span {
   height: 20px;
   font-style: normal;
   font-weight: 600;
@@ -97,7 +97,7 @@
   cursor: pointer;
 }
 
-.amountOnPage span {  
+.amountOnPage span {
   height: 20px;
   font-style: normal;
   font-weight: 600;
@@ -108,8 +108,6 @@
   text-align: center;
   color: #4A4A4A;
 }
-
-
 
 /* Tickets Items */
 

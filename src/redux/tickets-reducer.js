@@ -25,16 +25,15 @@ const ticketsReducer = (state = initialState, action) => {
 
 const setTickets = (tickets) => ({ type: SET_TICKETS, tickets });
 
-export const getTickets = () => {    
-    return async (dispatch) => { 
-                
+export const getTickets = () => {
+    return async (dispatch) => {
         const searchId = await getSearchId();
         let isStop = false;
         while (isStop === false) {
             const response = await getTicketsPack(searchId.data.searchId);
             dispatch(setTickets(response.data.tickets));
-            isStop = response.data.stop;            
-        }         
+            isStop = response.data.stop;
+        }
     }
 }
 
