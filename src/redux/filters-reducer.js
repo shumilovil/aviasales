@@ -44,7 +44,7 @@ const filtersReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case TOGGLE_FILTER_THERE:
-            return toogleSingleConnectionFilter(state, action, 'there');            
+            return toogleSingleConnectionFilter(state, action, 'there');
 
         case TOGGLE_FILTER_THERE_ALL_THERE:
             return toogleAllConnectionFilter(state, 'there');
@@ -52,8 +52,8 @@ const filtersReducer = (state = initialState, action) => {
         case CHOOSE_DURATION_THERE:
             return changeDuration(state, action, 'there');
 
-            case TOGGLE_FILTER_FROM:
-            return toogleSingleConnectionFilter(state, action, 'from');            
+        case TOGGLE_FILTER_FROM:
+            return toogleSingleConnectionFilter(state, action, 'from');
 
         case TOGGLE_FILTER_THERE_ALL_FROM:
             return toogleAllConnectionFilter(state, 'from');
