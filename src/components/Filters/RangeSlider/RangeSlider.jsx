@@ -18,12 +18,10 @@ export default function RangeSlider(props) {
   const [value, setValue] = React.useState([0, 50]);  
 
   useEffect(() => {
-    console.log('Useeffect22');
     setValue([props.minMaxDuration.min, props.minMaxDuration.max])
   }, [props.minMaxDuration])
 
-  useEffect(() => {    
-    console.log('Useeffect');
+  useEffect(() => {
     props.chooseDuration({ min: value[0] * 60, max: value[1] * 60 })
   }, [value])
 
