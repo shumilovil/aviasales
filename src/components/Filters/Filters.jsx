@@ -28,42 +28,44 @@ export const Filters = (props) => {
     return (
         <div>
             <div className={style.filters}>
-                <h1>Туда</h1>
-
-                <Filter filterLabel={'Все пересадки'}
-                    onFilterChange={onallConnectionsChangeThere}
-                    filter={props.filtersThere.allConnections}
-                    filterName={'all'}
-                />
-
-                <Filter filterLabel={'Без пересадок'}
-                    onFilterChange={onFilterChangeThere}
-                    filter={props.filtersThere.connections.zeroConnections}
-                    filterName={'zeroConnections'}
-                />
-
-                <Filter filterLabel={'1 пересадка'}
-                    onFilterChange={onFilterChangeThere}
-                    filter={props.filtersThere.connections.oneConnection}
-                    filterName={'oneConnection'}
-                />
-
-                <Filter filterLabel={'2 пересадки'}
-                    onFilterChange={onFilterChangeThere}
-                    filter={props.filtersThere.connections.twoConnections}
-                    filterName={'twoConnections'}
-                />
-
-                <Filter filterLabel={'3 пересадки'}
-                    onFilterChange={onFilterChangeThere}
-                    filter={props.filtersThere.connections.threeConnections}
-                    filterName={'threeConnections'}
-                />
-
-                <ThemeProvider theme={theme}>
-                    <RangeSlider chooseDuration={props.chooseDurationThere}
-                        minMaxDuration={props.minMaxDurationThere} />
-                </ThemeProvider>
+                <div className={style.there}>
+                    <h1>Туда</h1>
+    
+                    <Filter filterLabel={'Все пересадки'}
+                        onFilterChange={onallConnectionsChangeThere}
+                        filter={props.filtersThere.allConnections}
+                        filterName={'all'}
+                    />
+    
+                    <Filter filterLabel={'Без пересадок'}
+                        onFilterChange={onFilterChangeThere}
+                        filter={props.filtersThere.connections.zeroConnections}
+                        filterName={'zeroConnections'}
+                    />
+    
+                    <Filter filterLabel={'1 пересадка'}
+                        onFilterChange={onFilterChangeThere}
+                        filter={props.filtersThere.connections.oneConnection}
+                        filterName={'oneConnection'}
+                    />
+    
+                    <Filter filterLabel={'2 пересадки'}
+                        onFilterChange={onFilterChangeThere}
+                        filter={props.filtersThere.connections.twoConnections}
+                        filterName={'twoConnections'}
+                    />
+    
+                    <Filter filterLabel={'3 пересадки'}
+                        onFilterChange={onFilterChangeThere}
+                        filter={props.filtersThere.connections.threeConnections}
+                        filterName={'threeConnections'}
+                    />
+    
+                    <ThemeProvider theme={theme}>
+                        <RangeSlider chooseDuration={props.chooseDurationThere}
+                            minMaxDuration={props.minMaxDurationThere} />
+                    </ThemeProvider>
+                </div>
 
                 <div className={style.from}>
                     <h1>Обратно</h1>
@@ -104,7 +106,6 @@ export const Filters = (props) => {
                             minMaxDuration={props.minMaxDurationFrom} />
                     </ThemeProvider>
                 </div>
-
             </div>
         </div>
     )

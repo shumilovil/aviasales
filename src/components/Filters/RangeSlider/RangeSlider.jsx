@@ -1,20 +1,16 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-import style from './RangeSlider.module.css'
+import style from './RangeSlider.module.css';
+import './RangeSlider.css';
 
-const useStyles = makeStyles({
-    root: {
-        width: 190
-    }
-});
+
 
 function valuetext(value) {
     return `${value}`;
 }
 
-export default function RangeSlider(props) {
-    const classes = useStyles();
+export default function RangeSlider(props) {    
     const [value, setValue] = React.useState([0, 0]);
 
     useEffect(() => {
@@ -31,8 +27,8 @@ export default function RangeSlider(props) {
 
     return (
         <div className={style.rangeSlider}>
-            <div className={classes.root}>
-                <div className={style.duration}>Время в пути, ч: от {value[0]} до {value[1]}</div>
+            <div className={style.duration}>Время в пути, ч: от {value[0]} до {value[1]}</div>
+            <div >                
                 <Slider
                     value={value}
                     onChange={handleChange}

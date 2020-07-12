@@ -6,7 +6,8 @@
 /* Sort Params */
 
 .sortChoice {
-  height: 50px;
+  min-height: 50px;
+  justify-content: stretch;
   display: flex;
   margin-bottom: 20px;
 }
@@ -22,7 +23,6 @@
 
 .sortChoice .sortParam span {
   width: 180px;
-  height: 20px;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -98,7 +98,6 @@
   color: #4A4A4A;
 }
 
-
 .amountOnPage span {
   height: 20px;
   font-style: normal;
@@ -108,14 +107,12 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   text-align: center;
-  
 }
 
 .amountOnPage:hover {
   background-color: #2196F3;
   color: #FFFFFF;
 }
-
 
 /* Tickets Items */
 
@@ -179,4 +176,37 @@
   font-size: 14px;
   line-height: 21px;
   color: #4A4A4A;
+}
+
+@media only screen and (min-width: 360px) and (max-width: 800px) {
+  .tickets {
+    margin: 0 auto;
+    width: inherit;
+  }
+  .ticketsItem {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    width: inherit;
+  }
+  .ticketsItem .route {
+    justify-content: stretch;
+  }
+  .ticketsItem .route .routePiece {
+    width: inherit;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  .sortChoice {
+    margin-bottom: 10px;
+  }
+  .sortChoice .sortParam span {
+    max-width: 120px;
+  }
+  .ticketsAmount {
+    margin-bottom: 10px;
+  }
+  .amountOnPage {
+    margin-bottom: 10px;
+  }
 }

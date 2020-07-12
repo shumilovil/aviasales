@@ -4,7 +4,7 @@ import { Ticket } from './Ticket';
 
 export const Tickets = (props) => {
 
-    const initialAmountOnPage = 20;
+    const initialAmountOnPage = 15;
 
     const [sort, setSort] = useState({ fastest: true, cheapest: false });
     const [amountOnPage, setAmount] = useState(initialAmountOnPage);

@@ -1,6 +1,5 @@
 .rangeSlider {
     margin-left: 20px;
-
 }
 
 .duration {
@@ -11,4 +10,12 @@
     font-size: 13px;
     line-height: 20px;
     color: #4A4A4A;
+}
+
+@media only screen and (min-width : 360px) and (max-width : 800px) {
+    .rangeSlider {
+        margin-left: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

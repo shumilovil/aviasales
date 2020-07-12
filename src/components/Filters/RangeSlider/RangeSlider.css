@@ -1,0 +1,9 @@
+.MuiSlider-root.MuiSlider-colorPrimary {
+    width: 190px;
+}
+
+@media only screen and (min-width : 360px) and (max-width : 800px) {
+    .MuiSlider-root.MuiSlider-colorPrimary {
+        width: 135px;
+    }
+}
