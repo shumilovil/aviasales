@@ -5,7 +5,7 @@ const getTicketsFromStore = (state) => {
     return state.ticketsArea.tickets;
 }
 
-export const getMinMaxDurationThere = createSelector([getTicketsFromStore],
+export const getMinMaxDurationThere = createSelector([getTicketsFromStore],    
     (tickets) => {
         return countMinMax(tickets, 0);
     }

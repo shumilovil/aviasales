@@ -2,11 +2,11 @@ import { toogleSingleConnectionFilter, toogleAllConnectionFilter, changeDuration
 
 const TOGGLE_FILTER_THERE = 'TOGGLE_FILTER_THERE';
 const TOGGLE_FILTER_ALL_THERE = 'TOGGLE_FILTER_ALL_THERE';
-const CHOOSE_DURATION_THERE = 'CHOOSE_DURATION_THERE';
+const SET_DURATION_THERE = 'SET_DURATION_THERE';
 
 const TOGGLE_FILTER_FROM = 'TOGGLE_FILTER_FROM';
 const TOGGLE_FILTER_ALL_FROM = 'TOGGLE_FILTER_ALL_FROM';
-const CHOOSE_DURATION_FROM = 'CHOOSE_DURATION_FROM';
+const SET_DURATION_FROM = 'SET_DURATION_FROM';
 
 const initialState = {
     there: {
@@ -19,7 +19,7 @@ const initialState = {
         allConnections: true,
         durationRange: {
             min: 0,
-            max: 0
+            max: 1000000
         }
     },
     from: {
@@ -32,7 +32,7 @@ const initialState = {
         allConnections: true,
         durationRange: {
             min: 0,
-            max: 0
+            max: 1000000
         }
     }
 
@@ -49,7 +49,7 @@ const filtersReducer = (state = initialState, action) => {
         case TOGGLE_FILTER_ALL_THERE:
             return toogleAllConnectionFilter(state, 'there');
 
-        case CHOOSE_DURATION_THERE:
+        case SET_DURATION_THERE:
             return changeDuration(state, action, 'there');
 
         case TOGGLE_FILTER_FROM:
@@ -58,7 +58,7 @@ const filtersReducer = (state = initialState, action) => {
         case TOGGLE_FILTER_ALL_FROM:
             return toogleAllConnectionFilter(state, 'from');
 
-        case CHOOSE_DURATION_FROM:
+        case SET_DURATION_FROM:
             return changeDuration(state, action, 'from');
 
 
@@ -71,10 +71,10 @@ const filtersReducer = (state = initialState, action) => {
 
 export const toggleFilterThere = (filter) => ({ type: TOGGLE_FILTER_THERE, filter });
 export const toggleallConnectionsThere = (filter) => ({ type: TOGGLE_FILTER_ALL_THERE, filter });
-export const chooseDurationThere = (duration) => ({ type: CHOOSE_DURATION_THERE, duration });
+export const setDurationThere = (duration) => ({ type: SET_DURATION_THERE, duration });
 
 export const toggleFilterFrom = (filter) => ({ type: TOGGLE_FILTER_FROM, filter });
 export const toggleallConnectionsFrom = (filter) => ({ type: TOGGLE_FILTER_ALL_FROM, filter });
-export const chooseDurationFrom = (duration) => ({ type: CHOOSE_DURATION_FROM, duration });
+export const setDurationFrom = (duration) => ({ type: SET_DURATION_FROM, duration });
 
 export default filtersReducer;

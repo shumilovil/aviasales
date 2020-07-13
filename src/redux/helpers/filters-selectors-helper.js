@@ -1,7 +1,7 @@
-export const countMinMax = (tickets, segment) => {
+export const countMinMax = (tickets, segment) => {    
     const durations = [];
     if (tickets.length === 0) {
-        return ({ min: 0, max: 0 })
+        return ({ min: 0, max: 1000000 })
     };
 
     tickets.forEach(ticket => {

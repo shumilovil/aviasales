@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import style from './RangeSlider.module.css';
 import './RangeSlider.css';
@@ -11,9 +10,9 @@ function valuetext(value) {
 }
 
 export default function RangeSlider(props) {    
-    const [value, setValue] = React.useState([0, 0]);
+    const [value, setValue] = React.useState([props.minMaxDuration.min, props.minMaxDuration.max]);
 
-    useEffect(() => {
+    useEffect(() => {        
         setValue([props.minMaxDuration.min, props.minMaxDuration.max])
     }, [props.minMaxDuration])
 
@@ -27,7 +26,7 @@ export default function RangeSlider(props) {
 
     return (
         <div className={style.rangeSlider}>
-            <div className={style.duration}>Время в пути, ч: от {value[0]} до {value[1]}</div>
+            <div className={style.duration}>Путь, ч: от {value[0]} до {value[1]}</div>
             <div >                
                 <Slider
                     value={value}

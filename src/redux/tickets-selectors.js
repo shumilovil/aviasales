@@ -24,7 +24,7 @@ const getDurationFrom = (state) => {
 
 
 const getFilteredTicketsThere = createSelector([getConnectionsThere, getDurationThere, getTicketsFromStore],
-    (filters, duration, tickets) => {        
+    (filters, duration, tickets) => {                
         return filterTickets(filters, duration, tickets, 0);      
     }
 );
@@ -37,7 +37,8 @@ const getFilteredTicketsFrom = createSelector([getConnectionsFrom, getDurationFr
 
 
 export const getProcessedTickets = createSelector([getFilteredTicketsFrom],
-    (tickets) => {        
+    (tickets) => {
+                
         const processedTickets = tickets.map(ticket => {
 
             return {

@@ -1,9 +1,11 @@
 import { getSearchId, getTicketsPack } from "../api/api";
 
 const SET_TICKETS = 'SET_TICKETS';
+const IS_LOADING = 'IS_LOADING';
 
 const initialState = {
-    tickets: []
+    tickets: [],
+    isLoading: true
 }
 
 const ticketsReducer = (state = initialState, action) => {
@@ -16,6 +18,12 @@ const ticketsReducer = (state = initialState, action) => {
                 tickets: [...state.tickets, ...action.tickets]
             }
 
+        case IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.isLoading
+            }
+
         default:
             return state;
     };
@@ -24,9 +32,11 @@ const ticketsReducer = (state = initialState, action) => {
 
 
 const setTickets = (tickets) => ({ type: SET_TICKETS, tickets });
+const isLoading = (isLoading) => ({ type: IS_LOADING, isLoading });
 
 export const getTickets = () => {
     return async (dispatch) => {
+        dispatch(isLoading(true));
         const searchId = await getSearchId();
         let isStop = false;
         while (isStop === false) {
@@ -34,6 +44,7 @@ export const getTickets = () => {
             dispatch(setTickets(response.data.tickets));
             isStop = response.data.stop;
         }
+        dispatch(isLoading(false));
     }
 }
 
