@@ -1,17 +1,16 @@
 import React from 'react';
 import style from './Tickets.module.css';
+import { convertDate, convertTime, convertDuration, convertPrice } from './Ticket-helper';
 
 export const Ticket = (props) => {
-    const { carrier, priceConverted, segments } = props.ticket;
-
-
+    const { carrier, price, segments } = props.ticket;
 
     return (
         <div className={style.ticketsItem}>
 
             <div className={style.priceAndAirlineLogo}>
                 <div className={style.price}>
-                    <span>{priceConverted} Р</span>
+                    <span>{convertPrice(price)} Р</span>
                 </div>
                 <div className={style.airlineLogo}>
                     <img src={`https://pics.avs.io/99/36/${carrier}.png`} alt="" />
@@ -28,8 +27,8 @@ export const Ticket = (props) => {
                                 </div>
                                 <div className={style.secondLine}>
                                     <span>
-                                        <div>{segment.dateConverted}</div>
-                                        <div>{segment.timeConverted}</div>
+                                        <div>{convertDate(segment.date)}</div>
+                                        <div>{convertTime(segment.date)}</div>
                                     </span>
                                 </div>
                             </div>
@@ -38,7 +37,7 @@ export const Ticket = (props) => {
                                     <span>В пути</span>
                                 </div>
                                 <div className={style.secondLine}>
-                                    <span>{segment.durationConverted}</span>
+                                    <span>{convertDuration(segment.duration)}</span>
                                 </div>
                             </div>
                             <div className={style.routePiece}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Tickets } from './Tickets';
 import { connect } from 'react-redux';
 import { getTickets } from '../../redux/tickets-reducer';
-import { getProcessedTickets } from '../../redux/tickets-selectors';
+import { getFilteredTicketsFrom } from '../../redux/tickets-selectors';
 
 
 class TicketsContainer extends React.Component {
@@ -20,7 +20,7 @@ class TicketsContainer extends React.Component {
 
 const marStateToProps = (state) => {
     return {
-        tickets: getProcessedTickets(state)
+        tickets: getFilteredTicketsFrom(state)
     }
 }
 

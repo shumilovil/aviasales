@@ -36,7 +36,7 @@ const getFilteredTicketsThere = createSelector([getConnectionsThere, getDuration
     }
 );
 
-const getFilteredTicketsFrom = createSelector([getConnectionsFrom, getDurationFrom, getFilteredTicketsThere, isLoading],
+export const getFilteredTicketsFrom = createSelector([getConnectionsFrom, getDurationFrom, getFilteredTicketsThere, isLoading],
     (filters, duration, tickets, isLoadingStatus) => {
         if (isLoadingStatus) {
             return tickets;
@@ -46,7 +46,7 @@ const getFilteredTicketsFrom = createSelector([getConnectionsFrom, getDurationFr
 );
 
 
-export const getProcessedTickets = createSelector([getFilteredTicketsFrom],
+/* export const getProcessedTickets = createSelector([getFilteredTicketsFrom],
     (tickets) => {
                 
         const processedTickets = tickets.map(ticket => {
@@ -85,4 +85,4 @@ export const getProcessedTickets = createSelector([getFilteredTicketsFrom],
 
         return processedTickets;
     }
-)
+) */
