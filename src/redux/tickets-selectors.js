@@ -1,6 +1,10 @@
 import { createSelector } from "reselect";
 import { filterTickets } from "./helpers/tickets-selectors-helper";
 
+const isLoading = (state) => {
+    return state.ticketsArea.isLoading;
+}
+
 const getTicketsFromStore = (state) => {
     return state.ticketsArea.tickets;
 }
@@ -23,14 +27,20 @@ const getDurationFrom = (state) => {
 
 
 
-const getFilteredTicketsThere = createSelector([getConnectionsThere, getDurationThere, getTicketsFromStore],
-    (filters, duration, tickets) => {                
+const getFilteredTicketsThere = createSelector([getConnectionsThere, getDurationThere, getTicketsFromStore, isLoading],
+    (filters, duration, tickets, isLoadingStatus) => {        
+        if (isLoadingStatus) {
+            return tickets;
+        }
         return filterTickets(filters, duration, tickets, 0);      
     }
 );
 
-const getFilteredTicketsFrom = createSelector([getConnectionsFrom, getDurationFrom, getFilteredTicketsThere],
-    (filters, duration, tickets) => {                 
+const getFilteredTicketsFrom = createSelector([getConnectionsFrom, getDurationFrom, getFilteredTicketsThere, isLoading],
+    (filters, duration, tickets, isLoadingStatus) => {
+        if (isLoadingStatus) {
+            return tickets;
+        }                       
         return filterTickets(filters, duration, tickets, 1);      
     }
 );

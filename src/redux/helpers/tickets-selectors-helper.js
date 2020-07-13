@@ -1,4 +1,4 @@
-export const filterTickets = (filters, duration, tickets, segment) => {
+export const filterTickets = (filters, duration, tickets, segment) => {    
     const filteredTickets = [];
 
     if (filters.zeroConnections) {

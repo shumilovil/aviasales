@@ -65,7 +65,7 @@ export const Filters = (props) => {
                     {
                         props.isLoading ? <Preloader />
                             : <ThemeProvider theme={theme}>
-                                <RangeSlider chooseDuration={props.setDurationThere}
+                                <RangeSlider setDuration={props.setDurationThere}
                                     minMaxDuration={props.minMaxDurationThere} />
                             </ThemeProvider>
                     }
@@ -109,7 +109,7 @@ export const Filters = (props) => {
                     {
                         props.isLoading ? <Preloader />
                             : <ThemeProvider theme={theme}>
-                                <RangeSlider chooseDuration={props.setDurationThere}
+                                <RangeSlider setDuration={props.setDurationThere}
                                     minMaxDuration={props.minMaxDurationThere} />
                             </ThemeProvider>
                     }
