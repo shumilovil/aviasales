@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Filters.module.css'
-import checkboxChecked from '../../assets/images/checkbox_checked.png'
-import checkboxEmpty from '../../assets/images/checkbox_empty.png'
+import checkboxChecked from '../../assets/images/checkbox_checked.svg'
+import checkboxEmpty from '../../assets/images/checkbox_empty.svg'
 
 export const Filter = (props) => {
 
