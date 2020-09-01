@@ -109,8 +109,8 @@ export const Filters = (props) => {
                     {
                         props.isLoading ? <Preloader />
                             : <ThemeProvider theme={theme}>
-                                <RangeSlider setDuration={props.setDurationThere}
-                                    minMaxDuration={props.minMaxDurationThere} />
+                                <RangeSlider setDuration={props.setDurationFrom}
+                                    minMaxDuration={props.minMaxDurationFrom} />
                             </ThemeProvider>
                     }
 
